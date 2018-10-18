@@ -9,8 +9,18 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>regEx</artifactId>
+    <artifactId>quartz</artifactId>
 
+    <!-- https://mvnrepository.com/artifact/org.quartz-scheduler/quartz -->
+
+    <dependencies>
+        <dependency>
+            <groupId>org.quartz-scheduler</groupId>
+            <artifactId>quartz</artifactId>
+            <version>2.3.0</version>
+        </dependency>
+
+    </dependencies>
 
 
 </project>
