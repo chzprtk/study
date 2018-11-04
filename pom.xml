@@ -10,6 +10,8 @@
     <modules>
         <module>regEx</module>
         <module>quartz</module>
+        <module>json</module>
+        <module>apache-commons-io</module>
     </modules>
     <packaging>pom</packaging>
 

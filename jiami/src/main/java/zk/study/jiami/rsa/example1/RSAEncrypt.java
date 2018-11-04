@@ -43,7 +43,7 @@ public class RSAEncrypt {
             e.printStackTrace();
         }
         // 初始化密钥对生成器，密钥大小为96-1024位
-        keyPairGen.initialize(9128,new SecureRandom());
+        keyPairGen.initialize(4096,new SecureRandom());
         // 生成一个密钥对，保存在keyPair中
         KeyPair keyPair = keyPairGen.generateKeyPair();
         // 得到私钥
@@ -153,6 +153,22 @@ public class RSAEncrypt {
             throws Exception {
         try {
             byte[] buffer = Base64.decode(privateKeyStr);
+
+            PKCS8EncodedKeySpec keySpec = new PKCS8EncodedKeySpec(buffer);
+            KeyFactory keyFactory = KeyFactory.getInstance("RSA");
+            return (RSAPrivateKey) keyFactory.generatePrivate(keySpec);
+        } catch (NoSuchAlgorithmException e) {
+            throw new Exception("无此算法");
+        } catch (InvalidKeySpecException e) {
+            throw new Exception("私钥非法");
+        } catch (NullPointerException e) {
+            throw new Exception("私钥数据为空");
+        }
+    }
+    public static RSAPrivateKey loadPrivateKeyByBytes(byte[] privateKeyBytes)
+            throws Exception {
+        try {
+            byte[] buffer = privateKeyBytes;
             PKCS8EncodedKeySpec keySpec = new PKCS8EncodedKeySpec(buffer);
             KeyFactory keyFactory = KeyFactory.getInstance("RSA");
             return (RSAPrivateKey) keyFactory.generatePrivate(keySpec);
